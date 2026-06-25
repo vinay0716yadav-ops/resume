@@ -1,82 +1,328 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Vinay Yadav  king Resume</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Vinay Kumar Ramchandra Yadav – Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f4f6f9;
+            font-family: 'Inter', sans-serif;
+            font-size: 13.5px;
+            color: #1a1a1a;
+            background: #f7f4f0;
+            line-height: 1.55;
         }
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+        .page {
+            max-width: 860px;
+            margin: 32px auto;
+            background: #fff;
+            padding: 40px 48px 48px;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.10);
         }
 
-        h1 {
-            color: #2c3e50;
+        /* ── HEADER ── */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2.5px solid #800020;
+            padding-bottom: 14px;
+            margin-bottom: 18px;
+            gap: 16px;
+        }
+        .header-left h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: #800020;
+            letter-spacing: 0.3px;
+            line-height: 1.2;
+        }
+        .header-left .subtitle {
+            font-size: 12.5px;
+            color: #555;
+            margin-top: 3px;
+        }
+        .header-right {
+            text-align: right;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.85;
+        }
+        .header-right a {
+            color: #800020;
+            text-decoration: none;
+        }
+        .header-right a:hover { text-decoration: underline; }
+
+        /* ── SECTION TITLE ── */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: #800020;
+            border-bottom: 1.5px solid #800020;
+            padding-bottom: 3px;
+            margin: 20px 0 10px;
         }
 
-        h2 {
-            color: #3498db;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 5px;
+        /* ── EDUCATION / EXPERIENCE ── */
+        .entry { margin-bottom: 10px; }
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .entry-title {
+            font-weight: 600;
+            font-size: 13.5px;
+            color: #111;
+        }
+        .entry-date {
+            font-size: 12px;
+            color: #666;
+            white-space: nowrap;
+            font-style: italic;
+        }
+        .entry-sub {
+            font-size: 12.5px;
+            color: #555;
+            font-style: italic;
+            margin-top: 1px;
+        }
+        .entry-grade {
+            font-size: 12px;
+            color: #666;
         }
 
-        ul {
-            line-height: 1.8;
+        /* ── BULLET LIST ── */
+        ul.bullet {
+            margin-top: 5px;
+            padding-left: 18px;
+            list-style: disc;
+        }
+        ul.bullet li {
+            font-size: 12.8px;
+            color: #333;
+            margin-bottom: 3px;
+        }
+        ul.bullet li a {
+            color: #800020;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        ul.bullet li a:hover { text-decoration: underline; }
+
+        /* ── SKILLS ── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: max-content 1fr;
+            gap: 4px 12px;
+            font-size: 12.8px;
+        }
+        .skill-label {
+            font-weight: 600;
+            color: #111;
+            white-space: nowrap;
+        }
+        .skill-val { color: #333; }
+
+        /* ── CERTS TABLE ── */
+        table.certs {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12.5px;
+            margin-top: 4px;
+        }
+        table.certs th {
+            text-align: left;
+            font-weight: 600;
+            color: #111;
+            border-bottom: 1px solid #ccc;
+            padding: 4px 8px 4px 0;
+        }
+        table.certs td {
+            padding: 5px 8px 5px 0;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        table.certs td a {
+            color: #800020;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        table.certs td a:hover { text-decoration: underline; }
+
+        /* ── ACHIEVEMENTS ── */
+        .achievement {
+            font-size: 12.8px;
+            color: #333;
+            padding: 4px 0;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .achievement::before {
+            content: '▸';
+            color: #800020;
+            font-size: 11px;
+            flex-shrink: 0;
+        }
+
+        @media print {
+            body { background: #fff; }
+            .page { box-shadow: none; margin: 0; padding: 24px 32px; max-width: 100%; }
         }
     </style>
 </head>
 <body>
+<div class="page">
 
-<div class="container">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <h1>Vinay Kumar Ramchandra Yadav</h1>
+            <div class="subtitle">VES Institute of Technology, Mumbai &nbsp;|&nbsp; B.E in Electronics and Computer Science</div>
+        </div>
+        <div class="header-right">
+            📞 +91-8169166211<br>
+            <a href="mailto:vinay0716yadav@gmail.com">vinay0716yadav@gmail.com</a><br>
+            <a href="mailto:2023.vinay.yadav@ves.ac.in">2023.vinay.yadav@ves.ac.in</a><br>
+            DOB: 16/01/2005 &nbsp;|&nbsp; Male<br>
+            401, Milan Society, Chembur, Mumbai<br>
+            <a href="https://www.linkedin.com/in/vinay-yadav-3067583a2" target="_blank">LinkedIn Profile</a>
+        </div>
+    </div>
 
-    <h1>Vinay Yadav</h1>
-    <h1>Vinay Resume Website</h1>
-    <h2>🚀</h2>
-    <p>
+    <!-- EDUCATION -->
+    <div class="section-title">Education</div>
 
-        Java Developer |
-        Docker Enthusiast
-    </p>
+    <div class="entry">
+        <div class="entry-header">
+            <span class="entry-title">Vivekanand Education Society's Institute of Technology, Mumbai</span>
+            <span class="entry-date">2023 – 2027</span>
+        </div>
+        <div class="entry-sub">B.E in Electronics and Computer Science</div>
+        <div class="entry-grade">CGPA: 9.11 (up to Semester 5)</div>
+    </div>
 
-    <h2>About Me</h2>
-    <p>
-        Passionate about Java development, Docker,
-        cloud technologies and software engineering.
-    </p>
+    <div class="entry">
+        <div class="entry-header">
+            <span class="entry-title">Swami Vivekanand High School And Junior College, Mumbai</span>
+            <span class="entry-date">2021 – 2023</span>
+        </div>
+        <div class="entry-sub">Higher Secondary (HSC)</div>
+        <div class="entry-grade">Percentage: 84.67%</div>
+    </div>
 
-    <h2>Skills</h2>
-    <ul>
-        <li>Java</li>
-        <li>Spring Boot</li>
-        <li>Git & GitHub</li>
-        <li>Docker</li>
-        <li>HTML & CSS</li>
-    </ul>
+    <div class="entry">
+        <div class="entry-header">
+            <span class="entry-title">Swami Vivekanand High School And Junior College, Mumbai</span>
+            <span class="entry-date">2021</span>
+        </div>
+        <div class="entry-sub">Matriculation (Maharashtra State Board SSC)</div>
+        <div class="entry-grade">Percentage: 89.80%</div>
+    </div>
 
-    <h2>Projects</h2>
-    <ul>
-        <li>Fitness Tracker Website</li>
-        <li>Resume Website</li>
-    </ul>
+    <!-- EXPERIENCE -->
+    <div class="section-title">Experience</div>
 
-    <h2>Education</h2>
-    <p>
-        B.Sc. Pharmacochemistry<br>
-        
-    </p>
+    <div class="entry">
+        <div class="entry-header">
+            <span class="entry-title">Security Analyst – Quantilix Insights Private Limited</span>
+            <span class="entry-date">Dec 2025 – Jan 2026</span>
+        </div>
+        <ul class="bullet">
+            <li><a href="https://drive.google.com/file/d/1FM_T9_i35lDVAniZh6JdEhAV6QRb8qcv/view?usp=drive_link" target="_blank">Certificate Link</a></li>
+            <li>Monitored and analyzed security alerts and logs to identify potential threats, assisted in incident triage and escalation, and supported daily SOC operations. Gained hands-on experience with security tools, documentation, and adherence to organizational security policies and best practices.</li>
+        </ul>
+    </div>
 
-    <h2>Contact</h2>
-    <p>Email: your-email@example.com</p>
+    <div class="entry">
+        <div class="entry-header">
+            <span class="entry-title">Digital Design Intern – VESIT × Panache Digilife Limited</span>
+            <span class="entry-date">Dec 2024 – Jan 2025</span>
+        </div>
+        <div class="entry-sub">Chips to Startup (C2S) Program</div>
+        <ul class="bullet">
+            <li><a href="https://drive.google.com/file/d/1QGeihNkluJ9nRe2kc7ucbBnjfrm4hBs3/view?usp=drive_link" target="_blank">Certificate Link</a></li>
+            <li>Worked on innovative FPGA design projects focusing on SERDES and Sigma-Delta ADC implementations. Gained hands-on exposure to digital design concepts, hardware implementation, and applied electronics projects.</li>
+        </ul>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section-title">Projects</div>
+
+    <div class="entry">
+        <div class="entry-header">
+            <span class="entry-title">AI-Based CCTV Video Analytics System</span>
+            <span class="entry-date">Ongoing</span>
+        </div>
+        <div class="entry-sub">Intelligent Video Surveillance</div>
+        <ul class="bullet">
+            <li>Designed and implemented an AI-driven CCTV analytics system for real-time security event detection without human supervision.</li>
+            <li>Implemented centralized event management for alert validation, deduplication, prioritization, and dashboard visualization.</li>
+        </ul>
+    </div>
+
+    <div class="entry">
+        <div class="entry-header">
+            <span class="entry-title">Gamified Disaster Management Learning Platform &nbsp;<a href="https://github.com/ChaitanyaS2104/SIH" target="_blank" style="font-size:11.5px; font-weight:500;">[GitHub]</a></span>
+            <span class="entry-date">2025</span>
+        </div>
+        <div class="entry-sub">Interactive Educational Platform</div>
+        <ul class="bullet">
+            <li>Designed a gamified learning platform to educate school students on disaster preparedness and response through interactive scenarios, quizzes, and simulations.</li>
+            <li>Implemented role-based learning modules covering earthquakes, floods, fires, and emergency safety procedures to improve engagement and retention.</li>
+        </ul>
+    </div>
+
+    <!-- TECHNICAL SKILLS -->
+    <div class="section-title">Technical Skills &amp; Interests</div>
+    <div class="skills-grid">
+        <span class="skill-label">Languages:</span><span class="skill-val">Java, C</span>
+        <span class="skill-label">System Administration:</span><span class="skill-val">Enterprise Linux, Ubuntu, Windows, macOS</span>
+        <span class="skill-label">Networking:</span><span class="skill-val">NMAP, Wireshark</span>
+        <span class="skill-label">Concepts:</span><span class="skill-val">Data Structures, Operating Systems, IoT</span>
+        <span class="skill-label">Hacking:</span><span class="skill-val">Ethical Hacking</span>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div class="section-title">Certifications</div>
+    <table class="certs">
+        <thead>
+        <tr>
+            <th>Certification Name</th>
+            <th>Issuer</th>
+            <th>Link</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>CISCO Networking Academy – Ethical Hacker</td>
+            <td>CISCO</td>
+            <td><a href="https://drive.google.com/file/d/1whdQf-bvoPN6WNvOvNitsz_DH6DtG4OV/view?usp=drive_link" target="_blank">Certificate Link</a></td>
+        </tr>
+        <tr>
+            <td>Introduction to Cybersecurity</td>
+            <td>CISCO</td>
+            <td><a href="https://drive.google.com/file/d/1jqoSlY2dI8IXi8pTUded06FPHT3cpskq/view?usp=drive_link" target="_blank">Certificate Link</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- ACHIEVEMENTS -->
+    <div class="section-title">Achievements &amp; Co-curricular Activities</div>
+    <div class="achievement">Winner in multiple sports competitions at Intra and Intercollegiate level</div>
+    <div class="achievement">Sr. Deputy Secretary – VESIT Sports Council</div>
 
 </div>
-
 </body>
 </html>
