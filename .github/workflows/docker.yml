@@ -33,8 +33,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build Docker Image
-        run: docker build -t vinay916/resume-site:latest .
+   - name: Build Docker Image
+    run: |
+      docker build \
+        -t vinay916/resume-site:latest \
+        -t vinay916/resume-site:${{ github.sha }} \
+        .
 
-      - name: Push Docker Image
-        run: docker push vinay916/resume-site:latest
+  - name: Push Docker Images
+    run: |
+      docker push vinay916/resume-site:latest
+      docker push vinay916/resume-site:${{ github.sha }}
