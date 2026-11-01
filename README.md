@@ -4,12 +4,11 @@
 [![Java](https://img.shields.io/badge/Java-25-orange.svg?logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
 [![Docker](https://img.shields.io/badge/Docker-Containerized-blue.svg?logo=docker&logoColor=white)](https://www.docker.com/)
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-vinay916%2Fresume--site-0db7ed.svg?logo=docker&logoColor=white)](https://hub.docker.com/r/vinay916/resume-site)
-[![Kubernetes](https://img.shields.io/badge/Kubernetes-Ready-326CE5.svg?logo=kubernetes&logoColor=white)](https://kubernetes.io/)
 [![GitHub Actions CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF.svg?logo=githubactions&logoColor=white)](https://github.com/vinay0716yadav-ops/resume/actions)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Vinay%20Yadav-0A66C2.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vinay-yadav-3067583a2)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A production-ready, containerized **Personal Resume & Portfolio Web Application** built with **Spring Boot 3**, **Docker**, and **Kubernetes**. Powered by an automated **GitHub Actions CI/CD pipeline** that packages the application with Maven, builds Docker images with `latest` and Git commit SHA version tags, and pushes them to Docker Hub (`vinay916/resume-site`) on every push to the `main` branch.
+A production-ready, containerized **Personal Resume & Portfolio Web Application** built with **Spring Boot 3** and **Docker**. Powered by an automated **GitHub Actions CI/CD pipeline** that packages the application with Maven, creates Docker images with `latest` and Git commit SHA version tags, and pushes them to Docker Hub (`vinay916/resume-site`) on every push to the `main` branch.
 
 ---
 
@@ -24,11 +23,6 @@ A production-ready, containerized **Personal Resume & Portfolio Web Application*
 - [Containerization with Docker](#-containerization-with-docker)
   - [Build and Run Standalone Container](#1-build-and-run-standalone-container)
   - [Run with Docker Compose](#2-run-with-docker-compose)
-- [Deploying on Kubernetes (K8s)](#-deploying-on-kubernetes-k8s)
-  - [1. Quick Deploy with Kustomize](#1-quick-deploy-with-kustomize)
-  - [2. Step-by-Step Deployment](#2-step-by-step-deployment)
-  - [3. Access the Application](#3-access-the-application)
-  - [4. Useful Kubernetes Commands](#4-useful-kubernetes-commands)
 - [GitHub Actions CI/CD Pipeline](#-github-actions-cicd-pipeline)
   - [Pipeline Workflow](#pipeline-workflow)
   - [Setting Up Docker Hub Credentials in GitHub Secrets](#setting-up-docker-hub-credentials-in-github-secrets)
@@ -66,11 +60,7 @@ Focus areas: **Cybersecurity, SOC Analysis, Digital Design (FPGA/SERDES), Embedd
 - Configured with container-aware JVM flags (`-XX:+UseContainerSupport`, `-XX:MaxRAMPercentage=75.0`).
 - Consistent execution environment across Linux, macOS, and cloud hosts.
 
-### ☸️ 4. Enterprise Kubernetes Deployment
-- Production-ready Kubernetes manifests: **Namespace**, **ConfigMap**, **Deployment (2 Replicas)**, **LoadBalancer Service**, **Ingress**, and **Kustomize**.
-- Zero-downtime rolling updates with liveness and readiness health probes.
-
-### 🔄 5. Automated CI/CD Pipeline (GitHub Actions)
+### 🔄 4. Automated CI/CD Pipeline (GitHub Actions)
 - Continuous Integration & Deployment automated on every push to `main`.
 - Compiles source code with Maven, verifies build integrity, builds container images, and publishes dual tags (`latest` and `sha-<commit>`) to Docker Hub.
 
@@ -92,15 +82,12 @@ flowchart TD
         HubLogin -->|Step 4: Push Tags| DockerHub["📦 Docker Hub Registry\n(vinay916/resume-site)"]
     end
 
-    subgraph Deployment Environments
+    subgraph Deployment
         DockerHub -->|Pull Image| LocalDocker["🐳 Docker Desktop /\nDocker Compose (Port 8080)"]
-        DockerHub -->|Pull Image| K8sCluster["☸️ Kubernetes Cluster\n(hotel-system / resume-system)"]
-        K8sCluster --> K8sPods["Pod Replicas\n(Spring Boot on port 8080)"]
     end
 
     subgraph User Experience
         LocalDocker --> Browser["🌐 Browser / PDF Print\nhttp://localhost:8080"]
-        K8sPods --> Browser
     end
 ```
 
@@ -113,7 +100,6 @@ flowchart TD
 | **Backend & Framework** | Java 25, Spring Boot 3.5.x, Embedded Tomcat |
 | **Frontend UI** | Semantic HTML5, Custom CSS3, Google Fonts (*Playfair Display*, *Inter*), Print CSS |
 | **Containerization** | Docker, Docker Compose, Docker Hub (`vinay916/resume-site`) |
-| **Orchestration** | Kubernetes (Deployments, Services, ConfigMaps, Ingress, Kustomize) |
 | **CI/CD Automation** | GitHub Actions (`actions/checkout@v4`, `actions/setup-java@v4`, `docker/login-action@v3`) |
 | **Build & Tooling** | Apache Maven 3.9.x, Git |
 
@@ -126,14 +112,6 @@ resume/
 ├── .github/
 │   └── workflows/
 │       └── docker.yml                 # GitHub Actions CI/CD pipeline
-├── k8s/                               # Kubernetes deployment manifests
-│   ├── namespace.yaml                 # Dedicated 'resume-system' namespace
-│   ├── configmap.yaml                 # Application configuration & env variables
-│   ├── app-deployment.yaml            # High-Availability Deployment (2 Replicas)
-│   ├── app-service.yaml               # LoadBalancer Service (Port 80 -> 8080)
-│   ├── ingress.yaml                   # Ingress routing rule (resume.local)
-│   ├── kustomization.yaml             # 1-command deployment aggregator
-│   └── deploy.sh                      # Executable rollout automation script
 ├── src/
 │   ├── main/
 │   │   ├── java/com/vinay/resume/
@@ -212,79 +190,6 @@ docker-compose up -d --build
 To stop the container:
 ```bash
 docker-compose down
-```
-
----
-
-## ☸️ Deploying on Kubernetes (K8s)
-
-The repository provides production-ready Kubernetes manifests located in [`k8s/`](k8s/):
-
-### 1. Quick Deploy with Kustomize
-
-Deploy all resources in a single command:
-```bash
-# Apply all manifests using Kustomize
-kubectl apply -k k8s/
-
-# Or run the included automation helper script
-chmod +x k8s/deploy.sh
-./k8s/deploy.sh
-```
-
----
-
-### 2. Step-by-Step Deployment
-
-```bash
-# 1. Create the dedicated Namespace
-kubectl apply -f k8s/namespace.yaml
-
-# 2. Apply ConfigMap
-kubectl apply -f k8s/configmap.yaml
-
-# 3. Deploy Application (2 Replicas with probes)
-kubectl apply -f k8s/app-deployment.yaml
-
-# 4. Deploy Service (LoadBalancer)
-kubectl apply -f k8s/app-service.yaml
-
-# 5. (Optional) Apply Ingress rule
-kubectl apply -f k8s/ingress.yaml
-```
-
----
-
-### 3. Access the Application
-
-#### Port Forwarding (Local / Minikube / Docker Desktop):
-```bash
-kubectl port-forward svc/resume-service 8080:80 -n resume-system
-```
-Open **[http://localhost:8080](http://localhost:8080)** in your browser.
-
-#### LoadBalancer (Cloud EKS / GKE / AKS):
-```bash
-kubectl get svc resume-service -n resume-system
-```
-Access directly through the assigned `EXTERNAL-IP`.
-
----
-
-### 4. Useful Kubernetes Commands
-
-```bash
-# Check Pods status
-kubectl get pods -n resume-system
-
-# View live application logs
-kubectl logs -f deployment/resume-deployment -n resume-system
-
-# Scale application replicas
-kubectl scale deployment/resume-deployment --replicas=4 -n resume-system
-
-# Teardown all resources
-kubectl delete -k k8s/
 ```
 
 ---
