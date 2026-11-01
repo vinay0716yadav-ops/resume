@@ -1,0 +1,9 @@
+target/
+!target/*.jar
+.git
+.gitignore
+.idea
+*.iml
+.DS_Store
+.system_generated
+*.log
